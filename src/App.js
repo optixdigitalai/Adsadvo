@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 
-// Global styles (MUST be at top)
+// Global styles (must be first)
 import "./styles/global.css";
 
 // Layout
@@ -22,7 +22,7 @@ const AmazonInternational = lazy(() =>
   import("./pages/AmazonInternational")
 );
 
-// Service pages
+// Service pages (⚠️ casing MUST match file names)
 const Flipkart = lazy(() => import("./pages/Flipkart"));
 const Meesho = lazy(() => import("./pages/meesho"));
 const EcomWebsite = lazy(() => import("./pages/ecom-website"));
@@ -41,8 +41,9 @@ function App() {
               alignItems: "center",
               justifyContent: "center",
               background: "#0b1c2d",
-              color: "#fff",
+              color: "#ffffff",
               fontSize: "18px",
+              fontWeight: "600",
             }}
           >
             Loading...
