@@ -1,255 +1,504 @@
-import React, { useState, useEffect } from "react";
-import { motion, useAnimation } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-import {
-  ShieldCheck,
-  ArrowRight,
-  Star,
-  TrendingUp,
-  Zap,
-  Layout,
-  PieChart,
-  Layers,
-  Award,
-  CheckCircle2,
-  Package,
-  Search,
-  MousePointerClick,
-  Rocket,
-} from "lucide-react";
+import React from "react";
+import { motion } from "framer-motion";
 
-/* ================= ANIMATIONS ================= */
-const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
-  },
-};
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
-};
-
-/* ================= PAGE ================= */
-const AmazonIndiaBest = () => {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const resize = () => setIsMobile(window.innerWidth < 992);
-    resize();
-    window.addEventListener("resize", resize);
-    return () => window.removeEventListener("resize", resize);
-  }, []);
-
+const AmazonDropshippingPage = () => {
   return (
-    <div style={{ fontFamily: "Poppins, sans-serif", overflowX: "hidden" }}>
-      {/* ================= HERO ================= */}
-      <section
-        style={{
-          minHeight: "100vh",
-          padding: isMobile ? "100px 20px" : "140px 5%",
-          background: "linear-gradient(135deg,#0f172a,#1e293b)",
-          color: "#fff",
-          display: "flex",
-          gap: "60px",
-          flexDirection: isMobile ? "column" : "row",
-          alignItems: "center",
-        }}
-      >
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          animate="visible"
-          style={{ flex: 1.2 }}
-        >
-          <motion.div variants={fadeInUp} style={{ color: "#ff7a18" }}>
-            <Award size={18} /> Official Amazon Growth Partner
+    <div style={styles.container}>
+      {/* Main Content */}
+      <main style={styles.mainContent}>
+        {/* Hero Section */}
+        <section style={styles.heroSection}>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            style={styles.heroContent}
+          >
+            <h1 style={styles.heroTitle}>Start Your Amazon <span style={styles.highlight}>Dropshipping</span> Journey</h1>
+            <p style={styles.heroSubtitle}>Transform your e-commerce business with our comprehensive dropshipping solution</p>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              style={styles.heroButton}
+            >
+              Launch Your Store Now
+            </motion.button>
           </motion.div>
+        </section>
 
-          <motion.h1
-            variants={fadeInUp}
-            style={{
-              fontSize: isMobile ? "40px" : "72px",
-              fontWeight: 900,
-              lineHeight: 1,
-              margin: "24px 0",
-            }}
-          >
-            Build Your <span style={{ color: "#ff7a18" }}>Amazon Empire</span>
-          </motion.h1>
+        {/* Features Section */}
+        <section id="features" style={styles.section}>
+          <h2 style={styles.sectionTitle}>Why Choose Us for Amazon Dropshipping</h2>
+          <div style={styles.featuresGrid}>
+            {features.map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                style={styles.featureCard}
+              >
+                <div style={styles.featureIcon}>{feature.icon}</div>
+                <h3 style={styles.featureTitle}>{feature.title}</h3>
+                <p style={styles.featureDescription}>{feature.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </section>
 
-          <motion.p
-            variants={fadeInUp}
-            style={{ fontSize: "18px", opacity: 0.85, maxWidth: "600px" }}
-          >
-            End-to-end Amazon automation in India. We handle sourcing, compliance,
-            ads & fulfillment — you focus on growth.
-          </motion.p>
+        {/* How To Start Section */}
+        <section id="howto" style={styles.section}>
+          <h2 style={styles.sectionTitle}>How to Start Your Amazon Dropshipping Business</h2>
+          <div style={styles.stepsContainer}>
+            {steps.map((step, index) => (
+              <div key={index} style={styles.stepCard}>
+                <div style={styles.stepNumber}>{index + 1}</div>
+                <h3 style={styles.stepTitle}>{step.title}</h3>
+                <p style={styles.stepDescription}>{step.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
 
-          <motion.button
-            variants={fadeInUp}
-            whileHover={{ scale: 1.05 }}
-            style={{
-              marginTop: "40px",
-              padding: "18px 40px",
-              background: "#ff7a18",
-              border: "none",
-              borderRadius: "14px",
-              color: "#fff",
-              fontWeight: 800,
-              cursor: "pointer",
-            }}
-          >
-            Get Started <ArrowRight size={18} />
-          </motion.button>
-        </motion.div>
+        {/* Pricing Section - Updated to INR */}
+        <section id="pricing" style={styles.section}>
+          <h2 style={styles.sectionTitle}>Choose Your Perfect Plan</h2>
+          <div style={styles.pricingContainer}>
+            <motion.div
+              whileHover={{ y: -10 }}
+              style={styles.pricingCard}
+            >
+              <div style={styles.pricingHeader}>
+                <h3 style={styles.pricingTitle}>Basic Plan</h3>
+                <div style={styles.pricingPrice}>
+                  <span style={styles.price}>₹16,499</span>
+                  <span style={styles.period}>/Year</span>
+                </div>
+              </div>
+              <ul style={styles.pricingFeatures}>
+                <li style={styles.pricingFeature}>Up to 100 products</li>
+                <li style={styles.pricingFeature}>Basic analytics</li>
+                <li style={styles.pricingFeature}>Email support</li>
+                <li style={styles.pricingFeature}>Inventory management</li>
+              </ul>
+              <button style={styles.pricingButton}>Get Started</button>
+            </motion.div>
 
-        {/* FORM */}
-        <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          style={{
-            flex: 0.8,
-            background: "#fff",
-            padding: "40px",
-            borderRadius: "28px",
-            color: "#0f172a",
-            boxShadow: "0 40px 80px rgba(0,0,0,.3)",
-          }}
-        >
-          <h3 style={{ fontSize: "24px", fontWeight: 800 }}>
-            Free Strategy Call
-          </h3>
-          <p style={{ color: "#64748b", marginBottom: "20px" }}>
-            Limited January slots
-          </p>
+            <motion.div
+              whileHover={{ y: -10 }}
+              style={{...styles.pricingCard, ...styles.popularCard}}
+            >
+              <div style={styles.popularBadge}>Most Popular</div>
+              <div style={styles.pricingHeader}>
+                <h3 style={styles.pricingTitle}>Pro Plan</h3>
+                <div style={styles.pricingPrice}>
+                  <span style={styles.price}>₹41,499</span>
+                  <span style={styles.period}>/Year</span>
+                </div>
+              </div>
+              <ul style={styles.pricingFeatures}>
+                <li style={styles.pricingFeature}>Unlimited products</li>
+                <li style={styles.pricingFeature}>Advanced analytics</li>
+                <li style={styles.pricingFeature}>Priority support</li>
+                <li style={styles.pricingFeature}>Automated inventory</li>
+                <li style={styles.pricingFeature}>Market research tools</li>
+              </ul>
+              <button style={styles.popularButton}>Get Started</button>
+            </motion.div>
 
-          <input placeholder="Full Name" style={inputStyle} />
-          <input placeholder="WhatsApp Number" style={inputStyle} />
+            <motion.div
+              whileHover={{ y: -10 }}
+              style={styles.pricingCard}
+            >
+              <div style={styles.pricingHeader}>
+                <h3 style={styles.pricingTitle}>Enterprise</h3>
+                <div style={styles.pricingPrice}>
+                  <span style={styles.price}>₹82,999</span>
+                  <span style={styles.period}>/Year</span>
+                </div>
+              </div>
+              <ul style={styles.pricingFeatures}>
+                <li style={styles.pricingFeature}>Custom solutions</li>
+                <li style={styles.pricingFeature}>Dedicated account manager</li>
+                <li style={styles.pricingFeature}>24/7 phone support</li>
+                <li style={styles.pricingFeature}>API access</li>
+                <li style={styles.pricingFeature}>Custom integrations</li>
+              </ul>
+              <button style={styles.pricingButton}>Contact Sales</button>
+            </motion.div>
+          </div>
+        </section>
 
-          <button style={ctaStyle}>Check Availability</button>
-        </motion.div>
-      </section>
+        {/* Contact Section */}
+        <section id="contact" style={styles.section}>
+          <div style={styles.contactContainer}>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              style={styles.contactCard}
+            >
+              <h2 style={styles.contactTitle}>Contact Us</h2>
+              <p style={styles.contactSubtitle}>We're here to help you grow your business.</p>
 
-      {/* ================= ROADMAP ================= */}
-      <section style={{ padding: "100px 5%", background: "#f8fafc" }}>
-        <h2 style={sectionTitle}>
-          Amazon <span style={{ color: "#ff7a18" }}>Blueprint</span>
-        </h2>
-
-        {[
-          {
-            title: "Account Setup",
-            icon: <MousePointerClick />,
-            desc: "GST, seller registration & compliance.",
-          },
-          {
-            title: "Product Research",
-            icon: <Search />,
-            desc: "AI-based high-margin product discovery.",
-          },
-          {
-            title: "Supplier Network",
-            icon: <Package />,
-            desc: "Verified Indian manufacturers.",
-          },
-          {
-            title: "Scale Sales",
-            icon: <Rocket />,
-            desc: "PPC, automation & optimization.",
-          },
-        ].map((step, i) => (
-          <Reveal key={i}>
-            <div style={card}>
-              <div style={{ color: "#ff7a18" }}>{step.icon}</div>
-              <h4>{step.title}</h4>
-              <p>{step.desc}</p>
-            </div>
-          </Reveal>
-        ))}
-      </section>
-
-      {/* ================= STATS ================= */}
-      <section style={{ padding: "80px 5%", background: "#0f172a" }}>
-        <div style={statsGrid}>
-          <Stat icon={<TrendingUp />} value="₹15Cr+" label="Revenue Generated" />
-          <Stat icon={<Star />} value="94%" label="Success Rate" />
-          <Stat icon={<ShieldCheck />} value="100%" label="Policy Safe" />
-          <Stat icon={<Zap />} value="2500+" label="Stores Launched" />
-        </div>
-      </section>
+              <form style={styles.contactForm}>
+                <div style={styles.formGroup}>
+                  <label style={styles.formLabel}>Full Name</label>
+                  <input
+                    style={styles.formInput}
+                    placeholder="John Doe"
+                    type="text"
+                  />
+                </div>
+                <div style={styles.formGroup}>
+                  <label style={styles.formLabel}>Email Address</label>
+                  <input
+                    style={styles.formInput}
+                    placeholder="john@example.com"
+                    type="email"
+                  />
+                </div>
+                <div style={styles.formGroup}>
+                  <label style={styles.formLabel}>Message</label>
+                  <textarea
+                    style={styles.formTextarea}
+                    placeholder="How can we help you?"
+                    rows="5"
+                  />
+                </div>
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  type="button"
+                  style={styles.submitButton}
+                >
+                  Send Message
+                </motion.button>
+              </form>
+            </motion.div>
+          </div>
+        </section>
+      </main>
     </div>
   );
 };
 
-/* ================= HELPERS ================= */
-const Reveal = ({ children }) => {
-  const controls = useAnimation();
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 });
+// Data
+const features = [
+  { icon: "📦", title: "Zero Inventory", description: "No need to stock products. We handle inventory management for you." },
+  { icon: "🚀", title: "Fast Setup", description: "Get your Amazon store up and running in less than 24 hours." },
+  { icon: "📊", title: "Advanced Analytics", description: "Real-time insights into your sales, profit margins, and performance." },
+  { icon: "🛡️", title: "Risk-Free", description: "No upfront inventory costs. Pay only when you make a sale." },
+  { icon: "🌍", title: "Global Suppliers", description: "Access to thousands of vetted suppliers worldwide." },
+  { icon: "💼", title: "Automated Order Processing", description: "Orders are automatically forwarded to suppliers for fulfillment." }
+];
 
-  useEffect(() => {
-    if (inView) controls.start("visible");
-  }, [inView, controls]);
+const steps = [
+  { title: "Create an Account", description: "Sign up for our platform and connect your Amazon seller account." },
+  { title: "Choose Products", description: "Browse our catalog of high-demand, profitable products to sell." },
+  { title: "Import to Amazon", description: "Use our tools to import product listings directly to your Amazon store." },
+  { title: "Start Selling", description: "When customers buy, we handle fulfillment and shipping automatically." }
+];
 
-  return (
-    <motion.div ref={ref} variants={fadeInUp} initial="hidden" animate={controls}>
-      {children}
-    </motion.div>
-  );
+// Styles
+const styles = {
+  container: {
+    minHeight: "100vh",
+    display: "flex",
+    flexDirection: "column",
+    backgroundColor: "#f8fafc",
+  },
+  
+  // Main Content Styles
+  mainContent: {
+    flex: "1",
+  },
+  
+  // Hero Section Styles
+  heroSection: {
+    padding: "80px 20px",
+    background: "linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)",
+    textAlign: "center",
+  },
+  heroContent: {
+    maxWidth: "800px",
+    margin: "0 auto",
+  },
+  heroTitle: {
+    fontSize: "56px",
+    fontWeight: "900",
+    color: "#0f172a",
+    marginBottom: "20px",
+    lineHeight: "1.2",
+  },
+  highlight: {
+    color: "#ff7a18",
+  },
+  heroSubtitle: {
+    fontSize: "20px",
+    color: "#64748b",
+    marginBottom: "40px",
+    maxWidth: "600px",
+    marginLeft: "auto",
+    marginRight: "auto",
+  },
+  heroButton: {
+    backgroundColor: "#0f172a",
+    color: "#ffffff",
+    border: "none",
+    padding: "18px 40px",
+    borderRadius: "12px",
+    fontWeight: "800",
+    fontSize: "18px",
+    cursor: "pointer",
+    boxShadow: "0 10px 25px rgba(15, 23, 42, 0.15)",
+  },
+  
+  // Section Styles
+  section: {
+    padding: "80px 20px",
+    maxWidth: "1200px",
+    margin: "0 auto",
+  },
+  sectionTitle: {
+    fontSize: "42px",
+    fontWeight: "900",
+    textAlign: "center",
+    color: "#0f172a",
+    marginBottom: "60px",
+  },
+  
+  // Features Styles
+  featuresGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+    gap: "30px",
+  },
+  featureCard: {
+    backgroundColor: "#ffffff",
+    padding: "30px",
+    borderRadius: "16px",
+    boxShadow: "0 10px 30px rgba(0, 0, 0, 0.05)",
+    border: "1px solid #e2e8f0",
+    transition: "transform 0.3s",
+  },
+  featureIcon: {
+    fontSize: "40px",
+    marginBottom: "20px",
+  },
+  featureTitle: {
+    fontSize: "22px",
+    fontWeight: "700",
+    color: "#0f172a",
+    marginBottom: "12px",
+  },
+  featureDescription: {
+    color: "#64748b",
+    lineHeight: "1.6",
+  },
+  
+  // Steps Styles
+  stepsContainer: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+    gap: "30px",
+  },
+  stepCard: {
+    backgroundColor: "#ffffff",
+    padding: "30px",
+    borderRadius: "16px",
+    boxShadow: "0 10px 30px rgba(0, 0, 0, 0.05)",
+    border: "1px solid #e2e8f0",
+    textAlign: "center",
+  },
+  stepNumber: {
+    width: "60px",
+    height: "60px",
+    backgroundColor: "#ff7a18",
+    color: "#ffffff",
+    borderRadius: "50%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: "24px",
+    fontWeight: "800",
+    margin: "0 auto 20px",
+  },
+  stepTitle: {
+    fontSize: "22px",
+    fontWeight: "700",
+    color: "#0f172a",
+    marginBottom: "12px",
+  },
+  stepDescription: {
+    color: "#64748b",
+    lineHeight: "1.6",
+  },
+  
+  // Pricing Styles - Updated for INR
+  pricingContainer: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+    gap: "30px",
+  },
+  pricingCard: {
+    backgroundColor: "#ffffff",
+    padding: "40px 30px",
+    borderRadius: "20px",
+    boxShadow: "0 10px 30px rgba(0, 0, 0, 0.05)",
+    border: "1px solid #e2e8f0",
+    display: "flex",
+    flexDirection: "column",
+    position: "relative",
+  },
+  popularCard: {
+    border: "2px solid #ff7a18",
+    transform: "scale(1.05)",
+  },
+  popularBadge: {
+    position: "absolute",
+    top: "-12px",
+    left: "50%",
+    transform: "translateX(-50%)",
+    backgroundColor: "#ff7a18",
+    color: "#ffffff",
+    padding: "6px 20px",
+    borderRadius: "20px",
+    fontSize: "14px",
+    fontWeight: "700",
+  },
+  pricingHeader: {
+    textAlign: "center",
+    marginBottom: "30px",
+  },
+  pricingTitle: {
+    fontSize: "28px",
+    fontWeight: "800",
+    color: "#0f172a",
+    marginBottom: "15px",
+  },
+  pricingPrice: {
+    display: "flex",
+    alignItems: "baseline",
+    justifyContent: "center",
+    gap: "5px",
+  },
+  price: {
+    fontSize: "48px",
+    fontWeight: "900",
+    color: "#0f172a",
+  },
+  period: {
+    fontSize: "18px",
+    color: "#64748b",
+  },
+  pricingFeatures: {
+    listStyle: "none",
+    padding: "0",
+    marginBottom: "30px",
+    flex: "1",
+  },
+  pricingFeature: {
+    padding: "12px 0",
+    color: "#475569",
+    borderBottom: "1px solid #e2e8f0",
+    display: "flex",
+    alignItems: "center",
+  },
+  pricingButton: {
+    backgroundColor: "#0f172a",
+    color: "#ffffff",
+    border: "none",
+    padding: "16px",
+    borderRadius: "10px",
+    fontWeight: "700",
+    fontSize: "16px",
+    cursor: "pointer",
+    transition: "all 0.3s",
+  },
+  popularButton: {
+    backgroundColor: "#ff7a18",
+    color: "#ffffff",
+    border: "none",
+    padding: "16px",
+    borderRadius: "10px",
+    fontWeight: "700",
+    fontSize: "16px",
+    cursor: "pointer",
+    boxShadow: "0 8px 20px rgba(255, 122, 24, 0.3)",
+    transition: "all 0.3s",
+  },
+  
+  // Contact Styles
+  contactContainer: {
+    maxWidth: "600px",
+    margin: "auto",
+  },
+  contactCard: {
+    background: "#fff",
+    padding: "50px",
+    borderRadius: "32px",
+    boxShadow: "0 20px 50px rgba(0,0,0,0.05)",
+    border: "1px solid #e2e8f0",
+  },
+  contactTitle: {
+    fontSize: "42px",
+    fontWeight: "900",
+    textAlign: "center",
+    marginBottom: "10px",
+    color: "#0f172a",
+  },
+  contactSubtitle: {
+    textAlign: "center",
+    color: "#64748b",
+    marginBottom: "40px",
+    fontSize: "18px",
+  },
+  contactForm: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "20px",
+  },
+  formGroup: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "8px",
+  },
+  formLabel: {
+    fontWeight: "600",
+    color: "#475569",
+  },
+  formInput: {
+    padding: "16px",
+    borderRadius: "12px",
+    border: "1px solid #e2e8f0",
+    fontSize: "16px",
+    background: "#f8fafc",
+    outline: "none",
+    transition: "border 0.3s",
+  },
+  formTextarea: {
+    padding: "16px",
+    borderRadius: "12px",
+    border: "1px solid #e2e8f0",
+    fontSize: "16px",
+    background: "#f8fafc",
+    minHeight: "150px",
+    resize: "vertical",
+    outline: "none",
+    transition: "border 0.3s",
+  },
+  submitButton: {
+    background: "#ff7a18",
+    color: "#fff",
+    border: "none",
+    padding: "18px",
+    borderRadius: "12px",
+    fontSize: "18px",
+    fontWeight: "800",
+    marginTop: "10px",
+    boxShadow: "0 10px 20px rgba(255, 122, 24, 0.2)",
+    cursor: "pointer",
+  },
 };
 
-const Stat = ({ icon, value, label }) => (
-  <div style={{ textAlign: "center", color: "#fff" }}>
-    <div style={{ color: "#ff7a18" }}>{icon}</div>
-    <h3>{value}</h3>
-    <p style={{ opacity: 0.6 }}>{label}</p>
-  </div>
-);
-
-/* ================= STYLES ================= */
-const inputStyle = {
-  width: "100%",
-  padding: "16px",
-  marginBottom: "12px",
-  borderRadius: "10px",
-  border: "1px solid #e2e8f0",
-};
-
-const ctaStyle = {
-  width: "100%",
-  padding: "18px",
-  background: "#ff7a18",
-  color: "#fff",
-  border: "none",
-  borderRadius: "12px",
-  fontWeight: 800,
-};
-
-const sectionTitle = {
-  textAlign: "center",
-  fontSize: "42px",
-  fontWeight: 900,
-  marginBottom: "60px",
-};
-
-const card = {
-  background: "#fff",
-  padding: "30px",
-  borderRadius: "24px",
-  marginBottom: "30px",
-  maxWidth: "700px",
-  marginInline: "auto",
-};
-
-const statsGrid = {
-  display: "grid",
-  gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))",
-  gap: "40px",
-  maxWidth: "1200px",
-  margin: "auto",
-};
-
-export default AmazonIndiaBest;
+export default AmazonDropshippingPage;
