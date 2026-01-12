@@ -310,42 +310,7 @@ const PricingPage = () => {
         </section>
 
         {/* Comparison Table */}
-        <section style={styles.comparisonSection}>
-          <h2 style={styles.sectionTitle}>Compare All Features</h2>
-          <div style={styles.comparisonTable}>
-            <table style={styles.table}>
-              <thead>
-                <tr>
-                  <th style={styles.tableHeader}>Feature</th>
-                  {plans.map(plan => (
-                    <th key={plan.id} style={styles.tableHeader}>
-                      {plan.name}
-                      {plan.popular && <div style={styles.tablePopular}>Popular</div>}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {comparisonFeatures.map((feature, index) => (
-                  <tr key={index} style={index % 2 === 0 ? styles.tableRowEven : styles.tableRowOdd}>
-                    <td style={styles.featureCell}>{feature.name}</td>
-                    {plans.map(plan => (
-                      <td key={plan.id} style={styles.planCell}>
-                        {feature[plan.id] === true ? (
-                          <span style={styles.checkMark}>✓</span>
-                        ) : feature[plan.id] === false ? (
-                          <span style={styles.crossMark}>✗</span>
-                        ) : (
-                          feature[plan.id]
-                        )}
-                      </td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
+        
 
         {/* FAQ Section */}
         <section style={styles.faqSection}>
@@ -394,19 +359,7 @@ const PricingPage = () => {
 };
 
 // Comparison Features Data
-const comparisonFeatures = [
-  { name: "Products Limit", starter: "50", professional: "500", enterprise: "Unlimited" },
-  { name: "Platform Integrations", starter: "1", professional: "All", enterprise: "All" },
-  { name: "Email Support", starter: true, professional: true, enterprise: true },
-  { name: "Phone Support", starter: false, professional: true, enterprise: true },
-  { name: "Priority Support", starter: false, professional: true, enterprise: true },
-  { name: "Dedicated Manager", starter: false, professional: false, enterprise: true },
-  { name: "API Access", starter: false, professional: false, enterprise: true },
-  { name: "Custom Integrations", starter: false, professional: false, enterprise: true },
-  { name: "Advanced Analytics", starter: false, professional: true, enterprise: true },
-  { name: "Bulk Operations", starter: false, professional: true, enterprise: true },
-  { name: "Multi-user Accounts", starter: false, professional: false, enterprise: true }
-];
+
 
 // FAQ Data
 const faqs = [
