@@ -323,10 +323,10 @@ const Header = () => {
 
             {dropOpen && (
               <div className="dropdown-list">
-                <Link to="/dropshipping" onClick={closeAll}><strong>Amazon</strong><span>Sell without inventory</span></Link>
-                <Link to="/dropshipping" onClick={closeAll}><strong>Flipkart</strong><span>Launch faster</span></Link>
-                <Link to="/dropshipping" onClick={closeAll}><strong>Meesho</strong><span>Trending products</span></Link>
-                <Link to="/dropshipping" onClick={closeAll}><strong>E-Com Website</strong><span>Your own brand</span></Link>
+                <Link to="/AmazonIndia" onClick={closeAll}><strong>Amazon</strong><span>Sell without inventory</span></Link>
+                <Link to="/Flipkart" onClick={closeAll}><strong>Flipkart</strong><span>Launch faster</span></Link>
+                <Link to="/meesho" onClick={closeAll}><strong>Meesho</strong><span>Trending products</span></Link>
+                <Link to="/ecom-website" onClick={closeAll}><strong>E-Com Website</strong><span>Your own brand</span></Link>
               </div>
             )}
 
