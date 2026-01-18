@@ -5,6 +5,11 @@ import PricingPlans from '../components/PricingPlans';
 import TransformJourney from '../components/TransformJourney';
 import Testimonials from '../components/Testimonials';
 import FAQ from '../components/FAQ';
+
+
+
+   
+ 
 import LatestStory from '../components/LatestStory';
 
 const Home = () => {

@@ -1,17 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import ContactForm from "../components/ContactForm";
 
 /* ================= PAGE ================= */
 const ContactPage = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 900);
-
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 900);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   return (
     <div style={styles.container}>
       {/* ================= HERO ================= */}
@@ -33,27 +25,24 @@ const ContactPage = () => {
 
       <main style={styles.mainContent}>
         {/* ================= GRID ================= */}
-        <div
-          style={{
-            ...styles.contentGrid,
-            gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
-          }}
-        >
+        <div style={styles.contentGrid}>
           {/* ================= FORM ================= */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
             <div style={styles.formContainer}>
-              <ContactForm defaultService="Amazon" />
+              <ContactForm />
             </div>
           </motion.div>
 
           {/* ================= INFO ================= */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
             <div style={styles.infoContainer}>
@@ -97,7 +86,8 @@ const ContactPage = () => {
         <section style={styles.ctaSection}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8 }}
             style={styles.ctaCard}
           >
@@ -108,12 +98,7 @@ const ContactPage = () => {
               Book a free 30-minute consultation with our experts
             </p>
 
-            <div
-              style={{
-                ...styles.ctaButtons,
-                flexDirection: isMobile ? "column" : "row",
-              }}
-            >
+            <div style={styles.ctaButtons}>
               <button style={styles.ctaPrimaryButton}>
                 Schedule Free Consultation
               </button>
@@ -127,6 +112,8 @@ const ContactPage = () => {
     </div>
   );
 };
+
+export default ContactPage;
 
 /* ================= STYLES ================= */
 
@@ -169,8 +156,10 @@ const styles = {
     padding: 20,
   },
 
+  /* ✅ RESPONSIVE GRID – NO JS NEEDED */
   contentGrid: {
     display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))",
     gap: 40,
     marginTop: 60,
   },
@@ -212,14 +201,15 @@ const styles = {
   },
 
   methodIcon: {
-    width: 60,
-    height: 60,
+    width: 56,
+    height: 56,
     background: "#eff6ff",
     borderRadius: 12,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     fontSize: 24,
+    flexShrink: 0,
   },
 
   methodTitle: {
@@ -228,6 +218,7 @@ const styles = {
 
   methodText: {
     color: "#64748b",
+    fontSize: 14,
   },
 
   ctaSection: {
@@ -252,8 +243,10 @@ const styles = {
     marginBottom: 32,
   },
 
+  /* ✅ Responsive CTA buttons */
   ctaButtons: {
     display: "flex",
+    flexWrap: "wrap",
     justifyContent: "center",
     gap: 16,
   },
@@ -266,6 +259,7 @@ const styles = {
     color: "#fff",
     fontWeight: 700,
     cursor: "pointer",
+    minWidth: 220,
   },
 
   ctaSecondaryButton: {
@@ -275,7 +269,6 @@ const styles = {
     padding: "16px 32px",
     borderRadius: 12,
     cursor: "pointer",
+    minWidth: 220,
   },
 };
-
-export default ContactPage;

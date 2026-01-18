@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import heroVideo from "../assets/hero-bg.mp4";
+// import heroVideo from "../assets/hero-bg.mp4";
 
 export default function Hero() {
   const videoRef = useRef(null);
@@ -12,7 +12,7 @@ export default function Hero() {
 
     const forcePlay = () => {
       if (videoRef.current) {
-        videoRef.current.play().catch(() => {});
+        videoRef.current.play().catch(() => { });
       }
       document.removeEventListener("touchstart", forcePlay);
       document.removeEventListener("scroll", forcePlay);
@@ -36,10 +36,19 @@ export default function Hero() {
         muted
         loop
         playsInline
-        preload="auto"
+        preload="metadata"
+        onEnded={() => {
+          if (videoRef.current) {
+            videoRef.current.currentTime = 0;
+            videoRef.current.play().catch(() => { });
+          }
+        }}
         style={styles.video}
       >
-        <source src={heroVideo} type="video/mp4" />
+        <source
+          src="https://res.cloudinary.com/dnnxal66k/video/upload/q_auto,f_auto/hero-bg_jrzlwc.mp4"
+          type="video/mp4"
+        />
       </video>
 
       <div style={styles.overlay} />
@@ -55,17 +64,17 @@ export default function Hero() {
         }}
       >
         <div>
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
             style={{ ...styles.title, fontSize: isMobile ? "34px" : "64px" }}
           >
-            Start Your Online <br /> 
-            <span style={{color: '#ff7a18'}}>Dropshipping</span> Business
+            Start Your Online <br />
+            <span style={{ color: '#ff7a18' }}>Dropshipping</span> Business
           </motion.h1>
 
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.8 }}
@@ -74,7 +83,7 @@ export default function Hero() {
             India’s Most Trusted Dropshipping Platform
           </motion.p>
 
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6, duration: 0.8 }}
@@ -94,14 +103,14 @@ export default function Hero() {
               justifyContent: isMobile ? "center" : "flex-start",
             }}
           >
-            <motion.button 
+            <motion.button
               whileHover={{ scale: 1.05, boxShadow: "0 10px 20px rgba(255, 122, 24, 0.3)" }}
               whileTap={{ scale: 0.95 }}
               style={styles.primaryBtn}
             >
               Get Started Today
             </motion.button>
-            <motion.button 
+            <motion.button
               whileHover={{ scale: 1.05, background: "rgba(255,255,255,0.1)" }}
               whileTap={{ scale: 0.95 }}
               style={styles.secondaryBtn}
@@ -125,8 +134,8 @@ export default function Hero() {
               "Expert Account Support",
               "Fast Store Launch",
             ].map((item, index) => (
-              <motion.div 
-                key={item} 
+              <motion.div
+                key={item}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1 + (index * 0.1) }}
