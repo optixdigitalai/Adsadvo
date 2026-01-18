@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 
 const Testimonials = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -84,9 +84,8 @@ const Testimonials = () => {
     }
   ];
 
-  const activeTestimonial = testimonials[activeIndex];
-
-  const nextTestimonial = () => {
+  // Fix 1: Wrap nextTestimonial in useCallback to stabilize its identity
+  const nextTestimonial = useCallback(() => {
     if (isAnimating) return;
     setIsAnimating(true);
     
@@ -94,9 +93,9 @@ const Testimonials = () => {
       setActiveIndex((prev) => (prev + 1) % testimonials.length);
       setIsAnimating(false);
     }, 300);
-  };
+  }, [isAnimating, testimonials.length]);
 
-  const prevTestimonial = () => {
+  const prevTestimonial = useCallback(() => {
     if (isAnimating) return;
     setIsAnimating(true);
     
@@ -104,9 +103,9 @@ const Testimonials = () => {
       setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
       setIsAnimating(false);
     }, 300);
-  };
+  }, [isAnimating, testimonials.length]);
 
-  const goToTestimonial = (index) => {
+  const goToTestimonial = useCallback((index) => {
     if (isAnimating || index === activeIndex) return;
     setIsAnimating(true);
     
@@ -114,9 +113,9 @@ const Testimonials = () => {
       setActiveIndex(index);
       setIsAnimating(false);
     }, 300);
-  };
+  }, [isAnimating, activeIndex]);
 
-  // Auto-rotate testimonials
+  // Fix 2: Add nextTestimonial to dependencies array
   useEffect(() => {
     if (!isHovered) {
       intervalRef.current = setInterval(() => {
@@ -129,7 +128,7 @@ const Testimonials = () => {
         clearInterval(intervalRef.current);
       }
     };
-  }, [isHovered, activeIndex]);
+  }, [isHovered, nextTestimonial]); // Added nextTestimonial to dependencies
 
   // Handle scroll progress for mobile
   useEffect(() => {
@@ -154,6 +153,14 @@ const Testimonials = () => {
       }
     };
   }, []);
+
+  // Fix 3: Remove unused variable or use it
+  // Active testimonial data is actually used in the component, so let's use it properly
+  const getActiveTestimonial = () => {
+    return testimonials[activeIndex];
+  };
+
+  const activeTestimonial = getActiveTestimonial();
 
   return (
     <>
