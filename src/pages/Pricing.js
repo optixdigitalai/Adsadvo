@@ -155,7 +155,7 @@ const PricingPage = () => {
               <div style={styles.cardHeader}>
                 <h3 style={styles.packageName}>{pkg.name}</h3>
                 <p style={styles.packageTagline}>{pkg.tagline}</p>
-                
+
                 {/* Yearly Price */}
                 <div style={styles.priceDisplay}>
                   <div style={styles.priceContainer}>
@@ -188,6 +188,9 @@ const PricingPage = () => {
                 <motion.button
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
+                  onClick={() => {
+                    window.location.href = "http://localhost:3000/contact";
+                  }}
                   style={{
                     ...styles.ctaButton,
                     backgroundColor: pkg.color,
@@ -197,6 +200,7 @@ const PricingPage = () => {
                 >
                   {pkg.ctaText}
                 </motion.button>
+
 
                 {/* Yearly Benefits */}
                 <div style={styles.yearlyBenefits}>
@@ -261,7 +265,7 @@ const styles = {
     padding: "40px 20px",
     overflowX: "hidden",
   },
-  
+
   // Header
   header: {
     padding: "40px 0 60px",
@@ -287,7 +291,7 @@ const styles = {
     color: "#64748b",
     lineHeight: "1.6",
   },
-  
+
   // Cards Wrapper - Horizontal scroll container
   cardsWrapper: {
     width: "100%",
@@ -296,7 +300,7 @@ const styles = {
     margin: "0 auto",
     position: "relative",
   },
-  
+
   // Cards Container - Horizontal layout
   cardsContainer: {
     display: "flex",
@@ -305,7 +309,7 @@ const styles = {
     width: "max-content",
     margin: "0 auto",
   },
-  
+
   // Individual Card
   pricingCard: {
     backgroundColor: "#ffffff",
@@ -318,7 +322,7 @@ const styles = {
     position: "relative",
     transition: "all 0.3s ease",
   },
-  
+
   // Badges
   popularBadge: {
     position: "absolute",
@@ -337,7 +341,7 @@ const styles = {
     boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
     zIndex: "2",
   },
-  
+
   premiumBadge: {
     position: "absolute",
     top: "-16px",
@@ -355,17 +359,17 @@ const styles = {
     boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
     zIndex: "2",
   },
-  
+
   fireIcon: {
     width: "14px",
     height: "14px",
   },
-  
+
   starIcon: {
     width: "14px",
     height: "14px",
   },
-  
+
   // Card Header
   cardHeader: {
     textAlign: "center",
@@ -373,7 +377,7 @@ const styles = {
     paddingBottom: "24px",
     borderBottom: "1px solid #e2e8f0",
   },
-  
+
   packageName: {
     fontSize: "24px",
     fontWeight: "800",
@@ -381,14 +385,14 @@ const styles = {
     marginBottom: "8px",
     lineHeight: "1.3",
   },
-  
+
   packageTagline: {
     color: "#64748b",
     fontSize: "16px",
     marginBottom: "24px",
     fontWeight: "500",
   },
-  
+
   // Price Display
   priceDisplay: {
     display: "flex",
@@ -397,32 +401,32 @@ const styles = {
     gap: "4px",
     marginBottom: "8px",
   },
-  
+
   priceContainer: {
     display: "flex",
     alignItems: "baseline",
   },
-  
+
   priceCurrency: {
     fontSize: "22px",
     fontWeight: "600",
     color: "#0f172a",
   },
-  
+
   priceAmount: {
     fontSize: "52px",
     fontWeight: "900",
     color: "#0f172a",
     lineHeight: "1",
   },
-  
+
   pricePeriod: {
     fontSize: "18px",
     color: "#64748b",
     fontWeight: "500",
     marginLeft: "4px",
   },
-  
+
   monthlyEquivalent: {
     fontSize: "15px",
     color: "#64748b",
@@ -432,19 +436,19 @@ const styles = {
     fontWeight: "500",
     display: "inline-block",
   },
-  
+
   // Card Body
   cardBody: {
     flex: "1",
     display: "flex",
     flexDirection: "column",
   },
-  
+
   featuresList: {
     flex: "1",
     marginBottom: "24px",
   },
-  
+
   featureItem: {
     display: "flex",
     alignItems: "flex-start",
@@ -454,11 +458,11 @@ const styles = {
     fontSize: "15px",
     lineHeight: "1.5",
   },
-  
+
   featureText: {
     flex: "1",
   },
-  
+
   checkIcon: {
     width: "18px",
     height: "18px",
@@ -466,7 +470,7 @@ const styles = {
     flexShrink: "0",
     marginTop: "2px",
   },
-  
+
   // CTA Button
   ctaButton: {
     color: "#ffffff",
@@ -479,7 +483,7 @@ const styles = {
     transition: "all 0.3s ease",
     width: "100%",
   },
-  
+
   // Yearly Benefits
   yearlyBenefits: {
     display: "flex",
@@ -492,18 +496,18 @@ const styles = {
     color: "#0369a1",
     fontSize: "15px",
   },
-  
+
   giftIcon: {
     width: "20px",
     height: "20px",
     color: "#0369a1",
     flexShrink: "0",
   },
-  
+
   benefitsText: {
     fontWeight: "600",
   },
-  
+
   // Scroll Indicator
   scrollIndicator: {
     display: "flex",
@@ -516,55 +520,55 @@ const styles = {
     fontWeight: "500",
     opacity: 0.8,
   },
-  
+
   scrollIcon: {
     width: "24px",
     height: "24px",
     color: "#3b82f6",
   },
-  
+
   scrollText: {
     textAlign: "center",
   },
-  
+
   // CTA Section
   ctaSection: {
     padding: "80px 0 0",
     maxWidth: "800px",
     margin: "0 auto",
   },
-  
+
   ctaCard: {
     background: "linear-gradient(135deg, #1e293b 0%, #0f172a 100%)",
     borderRadius: "24px",
     overflow: "hidden",
   },
-  
+
   ctaContent: {
     padding: "48px",
     textAlign: "center",
     color: "#ffffff",
   },
-  
+
   ctaTitle: {
     fontSize: "32px",
     fontWeight: "800",
     marginBottom: "16px",
   },
-  
+
   ctaText: {
     fontSize: "18px",
     color: "#cbd5e1",
     marginBottom: "32px",
     lineHeight: "1.6",
   },
-  
+
   ctaButtons: {
     display: "flex",
     justifyContent: "center",
     gap: "16px",
   },
-  
+
   ctaPrimaryButton: {
     backgroundColor: "#3b82f6",
     color: "#ffffff",

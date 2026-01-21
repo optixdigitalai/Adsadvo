@@ -27,14 +27,13 @@ const ContactForm = () => {
     try {
       await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
-        mode: "no-cors", // ⭐ REQUIRED FOR GOOGLE APPS SCRIPT
+        mode: "no-cors",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
         body: formBody,
       });
 
-      // We cannot read response in no-cors, assume success
       setStatus("✅ Message sent successfully!");
       setFormData({
         name: "",
@@ -49,13 +48,53 @@ const ContactForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={styles.form}>
+    <form
+      onSubmit={handleSubmit}
+      style={styles.form}
+      className="contact-form"
+    >
+      {/* Mobile Responsive Styles */}
+      <style>
+        {`
+          @media (max-width: 768px) {
+            .contact-form {
+              padding: 24px !important;
+              border-radius: 20px !important;
+            }
+
+            .contact-form h2 {
+              font-size: 22px !important;
+            }
+
+            .contact-form p {
+              font-size: 13px !important;
+            }
+
+            .contact-form .grid {
+              grid-template-columns: 1fr !important;
+            }
+
+            .contact-form input,
+            .contact-form textarea,
+            .contact-form select {
+              font-size: 15px !important;
+              padding: 14px !important;
+            }
+
+            .contact-form button {
+              padding: 18px !important;
+              font-size: 16px !important;
+            }
+          }
+        `}
+      </style>
+
       <h2 style={styles.heading}>Send us a message</h2>
       <p style={styles.subheading}>
         Our experts will contact you within 24 hours
       </p>
 
-      <div style={styles.grid}>
+      <div style={styles.grid} className="grid">
         <input
           name="name"
           placeholder="Your Name"
@@ -92,9 +131,8 @@ const ContactForm = () => {
         style={styles.input}
       >
         <option value="">Select Service</option>
-        <option value="Amazon">Amazon </option>
-        <option value="Shopify"> E-commerce Website</option>
-        {/* <option value="Flipkart">Flipkart Setup</option> */}
+        <option value="Amazon">Amazon</option>
+        <option value="Shopify">E-commerce Website</option>
       </select>
 
       <textarea
@@ -129,6 +167,9 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     gap: "16px",
+    maxWidth: "520px",
+    width: "100%",
+    margin: "0 auto",
   },
   heading: {
     fontSize: "26px",
@@ -142,7 +183,7 @@ const styles = {
   },
   grid: {
     display: "grid",
-    gridTemplateColumns: "1fr 1fr",
+    gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
     gap: "14px",
   },
   input: {
@@ -151,6 +192,7 @@ const styles = {
     border: "1px solid #e2e8f0",
     fontSize: "14px",
     outline: "none",
+    width: "100%",
   },
   textarea: {
     padding: "14px 16px",
@@ -158,6 +200,7 @@ const styles = {
     border: "1px solid #e2e8f0",
     fontSize: "14px",
     resize: "none",
+    width: "100%",
   },
   button: {
     marginTop: "10px",
