@@ -189,7 +189,8 @@ const PricingPage = () => {
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
                   onClick={() => {
-                    window.location.href = "http://localhost:3000/contact";
+                   window.location.href = "/contact";
+
                   }}
                   style={{
                     ...styles.ctaButton,
