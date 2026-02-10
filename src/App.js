@@ -43,9 +43,9 @@ const RefundPolicy = lazy(() =>
 const ShippingPolicy = lazy(() =>
   import("./pages/policies/ShippingPolicy")
 );
-const Support = lazy(() =>
-  import("./pages/policies/Support")
-);
+// const Support = lazy(() =>
+//   import("./pages/policies/Support")
+// );
 
 function App() {
   return (
@@ -102,7 +102,7 @@ function App() {
           />
           <Route path="/refund-policy" element={<RefundPolicy />} />
           <Route path="/shipping-policy" element={<ShippingPolicy />} />
-          <Route path="/support" element={<Support />} />
+          {/* <Route path="/support" element={<Support />} /> */}
 
           {/* ================= Fallback ================= */}
           <Route path="*" element={<Home />} />
