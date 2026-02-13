@@ -84,9 +84,9 @@ const Footer = () => {
                 <Link to="/shipping-policy" className="footer-link-small">
                   Shipping Policy
                 </Link>
-                <Link to="/support" className="footer-link-small">
+                {/* <Link to="/support" className="footer-link-small">
                   Support
-                </Link>
+                </Link> */}
               </div>
 
             </div>

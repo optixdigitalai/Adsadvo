@@ -330,6 +330,8 @@ const Header = () => {
               </div>
             )}
 
+
+            <Link to="/our-team" onClick={closeAll}>Our Team</Link>
             <Link to="/pricing" onClick={closeAll}>Pricing</Link>
             <Link to="/contact" onClick={closeAll}>Contact</Link>
 

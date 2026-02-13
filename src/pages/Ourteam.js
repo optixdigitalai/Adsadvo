@@ -71,10 +71,10 @@ const teamMembers = [
     ]
   },
   {
-    name: "Saurabh Srivastava",
+    name: "Saurabh Shirst",
     role: "Lead Developer",
     image: saurabh,
-    bio: "Saurabh Srivastava is a full-stack developer focused on building robust, scalable, and high-performance platforms. He specializes in web development, system architecture, and DevOps.",
+    bio: "Saurabh Shirsat is a full-stack developer focused on building robust, scalable, and high-performance platforms. He specializes in web development, system architecture, and DevOps.",
     social: { linkedin: "#", github: "#" },
     expertise: [
       "Web Development",
